@@ -21,15 +21,25 @@
     "validator": "^13.1.1"
   },
   "scripts": {
-    "test": "nyc mocha"
+    "test": "npm run build && nyc node_modules/.bin/mocha",
+    "build": "babel app.js -d dist",
+    "start": "npm run build && nodemon app.js",
+    "coverage": "nyc --repoter=text npm run test"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "babel": "^6.23.0",
+    "@babel/cli": "^7.20.7",
+    "@babel/core": "^7.20.7",
+    "@babel/preset-env": "^7.20.2",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
+    "eslint": "^8.30.0",
     "nyc": "^15.1.0"
+  },
+  "nyc": {
+    "include": "./app.js",
+    "exclude": "./controller/"
   }
 }
