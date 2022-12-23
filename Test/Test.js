@@ -1,6 +1,6 @@
 import chai from "chai"
 import chaiHttp from "chai-http"
-import app from "../app"
+import app from "../app.js"
 
 chai.should()
 
@@ -32,7 +32,7 @@ describe("blogs api" ,()=>{
     //         done();
     //     })   
     //     it("it should say incorect email or password",(done)=>{
-    //         chai.request(server)
+    //         chai.request(app)
     //         .post('/login')
     //         .send(users[1]) 
     //         .end((err,response) =>{
