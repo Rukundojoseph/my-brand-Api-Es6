@@ -5,7 +5,6 @@ import  bcrypt from 'bcrypt';
 const userSchema = new mongoose.Schema({
 
     email: joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }).required(),
-
   password: {
     type: String,
     required: [true, 'Please enter a password'],
