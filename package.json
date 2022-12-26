@@ -43,7 +43,7 @@
   },
   "nyc": {
     "exclude": [
-      "dist/controllers/"
+      "src/controllers/"
     ]
   }
 }
