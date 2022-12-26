@@ -2,8 +2,7 @@
   "name": "node-express-jwt-auth",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
-  "main": "app.js",
+  "main": "./dist/app.js",
   "dependencies": {
     "bcrypt": "^5.0.0",
     "chai": "^4.3.7",
@@ -22,10 +21,10 @@
     "validator": "^13.1.1"
   },
   "scripts": {
-    "test": "mocha",
-    "build": "babel app.js -d dist",
-    "start": "nodemon app.js",
-    "coverage": "nyc --repoter=text npm run test",
+    "test": "mocha dist/Test/Test.js",
+    "build": "babel src -d dist",
+    "start": "npm run build && node dist/app.js",
+    "coverage": "nyc npm run test ",
     "cover": "istanbul cover node_modules/mocha/bin/_mocha"
   },
   "keywords": [],
@@ -39,9 +38,10 @@
     "babel-preset-env": "^1.7.0",
     "eslint": "^8.30.0",
     "nyc": "^15.1.0"
-  },
+  },  
   "nyc": {
-    "include": "./app.js",
-    "exclude": "./controller/"
-  }
+        "exclude": [
+            "dist/controllers/"            
+        ]
+    }
 }
