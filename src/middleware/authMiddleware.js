@@ -2,8 +2,8 @@ import jwt from 'jsonwebtoken'
 import  User from '../models/User.js'
 
 
-const requireAuth = (req, res, next) => {
-    const token = req.cookies.token 
+const requireAuth = (req, res, next) => {  
+  const token = req.cookies.token || req.headers.authorization
   // check json web token exists & is verified
   if (token) {
     jwt.verify(token, 'my name is joseph', (err, decodedToken) => {
@@ -28,8 +28,7 @@ const requireAuth = (req, res, next) => {
 
 //require admin
 const requireAdmin = (req, res, next) => {
-  const token = req.cookies.token || req.body.token;
-// check json web token exists & is verified
+  const token = req.cookies.token || req.headers.authorization
 if (token) {
   jwt.verify(token, 'my name is joseph', async (err, decodedToken) => {
     if (err) {
