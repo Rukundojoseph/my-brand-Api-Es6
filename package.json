@@ -21,9 +21,10 @@
     "validator": "^13.1.1"
   },
   "scripts": {
-    "test": "mocha dist/Test/Test.js",
+    "test": "mocha  --timeout 10000000 ./src/Test/Test.js --require @babel/register --exit",
     "build": "babel src -d dist",
     "start": "npm run build && node dist/app.js",
+    "dev_start": "nodemon --exec babel-node src/app.js",
     "coverage": "nyc npm run test ",
     "cover": "istanbul cover node_modules/mocha/bin/_mocha"
   },
@@ -33,15 +34,16 @@
   "devDependencies": {
     "@babel/cli": "^7.20.7",
     "@babel/core": "^7.20.7",
+    "@babel/node": "^7.20.7",
     "@babel/preset-env": "^7.20.2",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "eslint": "^8.30.0",
     "nyc": "^15.1.0"
-  },  
+  },
   "nyc": {
-        "exclude": [
-            "dist/controllers/"            
-        ]
-    }
+    "exclude": [
+      "dist/controllers/"
+    ]
+  }
 }

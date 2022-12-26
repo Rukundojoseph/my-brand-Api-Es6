@@ -28,7 +28,9 @@ import authRoutes from './routes/authRoutes.js'
 const dbURI = 'mongodb://127.0.0.1:27017/authopf';
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex:true })
   .then((result) =>{ 
-    app.listen(port)
+    app.listen(port,()=>{
+      console.log("listening on port 3000")
+    })
     swaggerDocs(app,port)    
   })
   .catch((err) => console.log(err));
