@@ -153,9 +153,9 @@ static async getlikes(req,res){
  res.status(200).json({
     users: likers,
     population: likers.length
-
  })
 }
+
 }
 
 export default Admin
