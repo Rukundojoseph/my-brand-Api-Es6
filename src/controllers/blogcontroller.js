@@ -157,6 +157,7 @@ static async addComment(req,res){
                                 result:"added comment blog",
                                 statusCode: 200,
                                 message: "success",
+                                commentid: newComment._id
                             })
                         }
                     })               
