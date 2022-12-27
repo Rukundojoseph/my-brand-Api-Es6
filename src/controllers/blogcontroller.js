@@ -176,10 +176,11 @@ static async addMessage(req,res){
         username : req.body.name,
         message : req.body.message
     }
-     await CONTACT.create(ms)
+    const messages =  await CONTACT.create(ms)
     res.status(200).json({
         statusCode: 200,
-        message : "Message Sent"
+        message : "Message Sent",
+        messageid: messages._id
     })
     } 
     catch(err){

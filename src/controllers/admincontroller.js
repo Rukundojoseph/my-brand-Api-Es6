@@ -105,7 +105,7 @@ static async DeleteBlog(req,res){
 static async getContacts(req,res){
     try{ 
         const conts = await CONTACT.find({}) 
-        res.json({
+        res.status(200).json({
             statusCode: 200,
             message: "succesfully withdrawn",
             data:  conts
@@ -120,7 +120,7 @@ static async getContacts(req,res){
 static async Deletemessage(req,res){   
     try {
 		await CONTACT.deleteOne({ _id: req.params.id })
-		res.status(204).send({
+		res.status(200).send({
             statusCode: 200,
             message: "delete message successfully"
 

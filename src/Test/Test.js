@@ -339,8 +339,14 @@ describe("blogs api" ,()=>{
       }) 
 
       //get users 
-      describe("GET/admin/users", ()=>{
-        var Ntoken="empty";      
+      describe("GET/admin/users test add and delete message and test get messages", ()=>{
+        var Ntoken="empty";  
+        var mid ="empty"    
+        const message={
+            email : "johnwall@gmail.com",
+            name : "test message ",
+            message : "testing messages from contact page"
+        }
           before(
               function(done) {               
               chai.request(app)
@@ -352,7 +358,16 @@ describe("blogs api" ,()=>{
               done()
                 });          
                 
-            });             
+            });     
+            after(function(done){
+                chai.request(app)      
+                .delete(`/admin/messages/${mid}`)
+                .set('Authorization', Ntoken) 
+                .end((error,response)=>{
+                    response.should.have.status(200)
+                    done()
+                })
+            })        
             
           it("get all users from admin",(done)=>{                      
               chai.request(app)
@@ -363,6 +378,29 @@ describe("blogs api" ,()=>{
                   done()              
                    })
              })      
+             it("send message to admin",(done)=>{                      
+                chai.request(app)
+                .post('/contact')            
+                .send(message)           
+                .end((err,response) =>{
+                    response.should.have.status(200)    
+                    mid=response.body.messageid                      
+                    done()              
+                     })
+               })   
+            it("get all messages from the admin",(done)=>{
+                chai.request(app)
+                .get(`/admin/messages`)
+                .set('Authorization', Ntoken) 
+                .end((error,response)=>{
+                    response.should.have.status(200)                 
+                    done()
+
+                })
+                
+
+            })
+
       })
       describe("post patch and delete /admin/blogs", ()=>{
         var Ntoken="empty";       
