@@ -364,5 +364,62 @@ describe("blogs api" ,()=>{
                    })
              })      
       })
-    
+      describe("post patch and delete /admin/blogs", ()=>{
+        var Ntoken="empty";       
+        const testpost=[{
+            title: "test blog create",
+            body: "test blog body create"
+        },{
+            title: "test blog patch",
+            body: "test blog body patch"
+        }]
+        var blogid="empty"
+          before(
+              function(done) {               
+              chai.request(app)
+                .post('/login')
+                .send({ email: 'joseph@gmail.com', password: 'pass123' })
+                .end((error,response)=>{
+                  // Save the token from the login response                  
+               Ntoken = response.body.token;                                      
+              done()
+                });          
+                
+            });   
+            after(function(done){
+                chai.request(app)
+                .delete(`/admin/blogs/${blogid}`)
+                .set('Authorization', Ntoken)
+                .end((err,response)=>{
+                    response.should.have.status(204)
+                    done()
+                })
+
+            })          
+            
+          it("create blog from admin",(done)=>{                      
+              chai.request(app)
+              .post('/admin/blogs')            
+              .set('Authorization', Ntoken)     
+              .send(testpost[0])       
+              .end((err,response) =>{
+                  response.should.have.status(201)   
+                //   response.body.message.should.be.eq("success")       
+                blogid=response.body.blog
+                  done()              
+                   })
+             })      
+             it("patch blog from admin",(done)=>{                      
+                chai.request(app)
+                .patch(`/admin/blogs/${blogid}`)            
+                .set('Authorization', Ntoken)     
+                .send(testpost[1])       
+                .end((err,response) =>{
+                    response.should.have.status(200)   
+                  //   response.body.message.should.be.eq("success")       
+                    done()              
+                     })
+               }) 
+      })
+      
 })
