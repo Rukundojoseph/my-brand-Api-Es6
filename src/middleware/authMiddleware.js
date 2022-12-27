@@ -32,10 +32,8 @@ const requireAdmin = (req, res, next) => {
 if (token) {
   jwt.verify(token, 'my name is joseph', async (err, decodedToken) => {
     if (err) {
-      console.log(err.message);
-      res.redirect('/login');
-    } else {
-      console.log(decodedToken);
+      console.log(err.message);    
+    } else {      
       let user = await User.findById(decodedToken.id);
       if(user.email == 'joseph@gmail.com')   
       {      

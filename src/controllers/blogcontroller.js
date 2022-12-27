@@ -57,8 +57,7 @@ static async addLike(req,res){
         if (err) {
           return {message:"the login has been changed"}    
         } else {      
-            const user = await User.findById(decodedToken.id).select("email")
-            console.log(user)       
+            const user = await User.findById(decodedToken.id).select("email")                   
             Blog.findById(req.params.id, function(err, foundBlog) {
                 if(err){
                     console.log(err);
@@ -70,13 +69,14 @@ static async addLike(req,res){
                 } else{
                     var addedlike = {                        
                        email : user.email
-                    };
-                    console.log(addedlike)
-                    LIKE.create(addedlike, function(err, newComment){
+                    }; 
+                    // const checklike= await Blog.findOneById(blogid).comments.populate()  
+                        
+                    LIKE.create(addedlike, function(err, newlike){
                         if(err){
                             console.log(err);
                         } else{
-                            foundBlog.likes.push(newComment);
+                            foundBlog.likes.push(newlike);
                             foundBlog.save();
                             res.status(200).json(
                                 {
@@ -114,8 +114,7 @@ static async addComment(req,res){
         if (err) {
           return {message:"the login has been changed"}    
         } else {      
-            const user = await User.findById(decodedToken.id).select("email")
-            console.log(user)       
+            const user = await User.findById(decodedToken.id).select("email")                   
             Blog.findById(req.params.id, function(err, foundBlog) {
                 if(err){
                     console.log(err);

@@ -201,7 +201,7 @@ describe("blogs api" ,()=>{
 /// requre authentication tests ................................................ , 
     //get all admin messages
 
-    describe("GET/admin/messages", (done)=>{
+    describe("GET/admin/messages", ()=>{
       var Ntoken="empty";
       let tokenarr =[];
         before(
@@ -211,27 +211,28 @@ describe("blogs api" ,()=>{
               .send({ email: 'joseph@gmail.com', password: 'pass123' })
               .end((error,response)=>{
                 // Save the token from the login response
-                console.log(Ntoken)
+               
              Ntoken = response.body.token;                                      
             done()
               });          
               
           });             
           
-        it("get all messages from admin",()=>{                      
+        it("get all messages from admin",(done)=>{                      
             chai.request(app)
             .get('/admin/messages')            
             .set('Authorization', Ntoken)            
             .end((err,response) =>{
                 response.should.have.status(200)   
-                response.body.message.should.be.eq("succesfully withdrawn")                     
+                response.body.message.should.be.eq("succesfully withdrawn")       
+                done()              
                  })
            })      
     })
 
 
     //geting all blogs 
-    describe("GET/admin/blogs", (done)=>{
+    describe("GET/admin/blogs", ()=>{
         var Ntoken="empty";
         let tokenarr =[];
           before(
@@ -240,27 +241,27 @@ describe("blogs api" ,()=>{
                 .post('/login')
                 .send({ email: 'joseph@gmail.com', password: 'pass123' })
                 .end((error,response)=>{
-                  // Save the token from the login response
-                  console.log(Ntoken)
+                  // Save the token from the login response                  
                Ntoken = response.body.token;                                      
               done()
                 });          
                 
             });             
             
-          it("get all blogs from admin",()=>{                      
+          it("get all blogs from admin",(done)=>{                      
               chai.request(app)
               .get('/admin/blogs')            
               .set('Authorization', Ntoken)            
               .end((err,response) =>{
                   response.should.have.status(200)   
-                  response.body.message.should.be.eq("success")                     
+                  response.body.message.should.be.eq("success")       
+                  done()              
                    })
              })      
       })
       
     //adding comment   
-    describe("post/blogs/:id/comment", (done)=>{
+    describe("post/blogs/:id/comment", ()=>{
         var Ntoken="empty";
         let tokenarr =[];
           before(
@@ -269,17 +270,16 @@ describe("blogs api" ,()=>{
                 .post('/login')
                 .send({ email: 'josephrk@gmail.com', password: 'pass123' })
                 .end((error,response)=>{
-                  // Save the token from the login response
-                  console.log(Ntoken)
+                  // Save the token from the login response                  
                Ntoken = response.body.token;                                      
               done()
                 });          
                 
             });             
             
-          it("get add comment",()=>{      
+          it("get add comment",(done)=>{      
             let testcomment={
-                body :"testcomment"
+                text:"testcomment"
             }
             const blogid = "639b45418b6be33a98643589"                
               chai.request(app)
@@ -288,7 +288,39 @@ describe("blogs api" ,()=>{
               .send(testcomment)
               .end((err,response) =>{
                   response.should.have.status(200)   
-                  response.body.result.should.be.eq("added comment blog")                     
+                  response.body.result.should.be.eq("added comment blog")       
+                  done()              
+                   })
+             })      
+      }) 
+
+      //adding like
+      describe("post/blogs/:id/like", ()=>{
+        var Ntoken="empty";
+        let tokenarr =[];
+          before(
+              function(done) {               
+              chai.request(app)
+                .post('/login')
+                .send({ email: 'josephrk@gmail.com', password: 'pass123' })
+                .end((error,response)=>{
+                  // Save the token from the login response                  
+               Ntoken = response.body.token;                                      
+              done()
+                });          
+                
+            });             
+            
+          it("get add like",(done)=>{            
+            const blogid = "639b45418b6be33a98643589"                
+              chai.request(app)
+              .post(`/blogs/${blogid}/like`)            
+              .set('Authorization', Ntoken)    
+              .send("like")            
+              .end((err,response) =>{
+                  response.should.have.status(200)   
+                  response.body.result.should.be.eq("liked blog")        
+                  done()             
                    })
              })      
       }) 

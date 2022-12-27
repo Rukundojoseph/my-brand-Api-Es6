@@ -33,10 +33,7 @@ static async login_post(req, res){
 
   try {
     const user = await User.login(email, password);
-    const token = createToken(user._id);
-    const bearerHeader = req.headers
-    console.log(bearerHeader)
-    
+    const token = createToken(user._id);    
     res.cookie('token', token, { httpOnly: true, maxAge: maxAge * 1000 });   
     res.status(200).json({ userID: user._id, token: token  });  
     
