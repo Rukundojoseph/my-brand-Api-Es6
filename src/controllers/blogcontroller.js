@@ -5,7 +5,7 @@ import LIKE from'../models/like.js'
 import handleErrors from'./errohandler.js'
 import User from'../models/User.js'
 import CONTACT from'../models/contact.js'
-import { hasKey, hasUserDefinedProperty } from 'mongoose/lib/utils.js'
+
 
 
  class Blogcontroller{
@@ -186,7 +186,7 @@ static async addMessage(req,res){
         res.status(400).json({errors})
     }   
 }
-static async deleteComment(req,res){   
+static async deleteComment(req,res){       
     const commentId = req.params.commentid;    
     const token = req.cookies.token || req.headers.authorization
     jwt.verify(token, 'my name is joseph', async (err, decodedToken) => {
@@ -203,8 +203,8 @@ static async deleteComment(req,res){
                         message: "error",
                     });
                 } else{      
-                    const comment= await comments.findOne({_id : commentId})
-                if(comment.author == user ){
+                    const comment= await Comments.findOne({_id : commentId})
+                if(comment.author == user.email ){
                 const deletedcmoment = await Comments.findOneAndDelete({_id : commentId})
                 foundBlog.comments.splice((foundBlog.comments.indexOf(commentId)),1)
                 foundBlog.save()      

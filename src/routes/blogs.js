@@ -110,6 +110,8 @@ router.get('/blogs/:id',Blogcontroller.getSingleBlogs)
 //require authentication
 router.post('/blogs/:id/like',requireAuth,Blogcontroller.addLike)
 router.post('/blogs/:id/comment',requireAuth,Blogcontroller.addComment)
+router.delete('/blogs/:id/:commentid',requireAuth,Blogcontroller.deleteComment)
+
 //require authentication
 
 
