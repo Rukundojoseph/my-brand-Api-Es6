@@ -24,24 +24,24 @@ static async getAllBlogs(req,res){
 console.log(error)
     }
 }
-static async getSingleBlogs(req,res){
-    try{
-    const blogID= req.params.blogID
-    const blog = await Blog.findOne({ _id: blogID}) 
-    if (blog){
-    res.json({blog})
-    }else{
-        res.status(200).json({
-            message: "there is no blog with that id "
-         })
-    }
-    }
-    catch(error){
-        errors = handleErrors(error)
-        res.status(400).json(errors)
-    }
+// static async getSingleBlogs(req,res){
+//     try{
+//     const blogID= req.params.blogID
+//     const blog = await Blog.findOne({ _id: blogID}) 
+//     if (blog){
+//     res.json({blog})
+//     }else{
+//         res.status(200).json({
+//             message: "there is no blog with that id "
+//          })
+//     }
+//     }
+//     catch(error){
+//         errors = handleErrors(error)
+//         res.status(400).json(errors)
+//     }
 
-}
+// }
 static async CreateBlog(req,res){
     try{
    const blog = await  Blog.create(req.body)
