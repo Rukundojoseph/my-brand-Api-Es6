@@ -87,6 +87,7 @@ describe("blogs api" ,()=>{
     // comment 
     describe("post /blogs/:id/comment", ()=>{
         const blogid = "639b45418b6be33a98643589"
+        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWI3MTI2ZjJkZWE4MjkwNDAxYWE2MCIsImlhdCI6MTY3MjA0NTE1NCwiZXhwIjoxNjcyMzA0MzU0fQ.QnLy1bNzGnC6EfU4OhE10QBrakRoO3q7NgKZQ9BLSYo"
         const comment ="what is  happening now"
         it("it should check add comment on blog id ",(done)=>{            
             chai.request(app)
@@ -196,18 +197,42 @@ describe("blogs api" ,()=>{
 
     })
     //deleting blog 
-    describe("GET /admin/messages", ()=>{
-        const  token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWI3MTI2ZjJkZWE4MjkwNDAxYWE2MCIsImlhdCI6MTY3MTQ0NjYxMCwiZXhwIjoxNjcxNzA1ODEwfQ.mHXK2yUKN_7dx5CIzPDcYTboOBLl3jgPxzwDoL1-zXA";
-        it("it should say you are not logged in",(done)=>{
+    describe("GET/admin/messages", (done)=>{
+      var Ntoken="empty";
+      let tokenarr =[];
+        before(
+            function(done) {               
             chai.request(app)
-            .get('/admin/messages') 
+              .post('/login')
+              .send({ email: 'joseph@gmail.com', password: 'pass123' })
+              .end((error,response)=>{
+                // Save the token from the login response
+                console.log(Ntoken)
+             Ntoken = response.body.token;                                      
+            done()
+              });          
+              
+          });             
+          
+        it("get all messages from admin",()=>{                      
+            chai.request(app)
+            .get('/admin/messages')            
+            .set('Authorization', Ntoken)            
             .end((err,response) =>{
-                response.should.have.status(404)   
-                response.body.message.should.be.eq("you are not logged in")             
+                response.should.have.status(200)   
+                response.body.message.should.be.eq("succesfully withdrawn")   
+                console.log("usetoken=>",Ntoken)            
+                console.log("tokenarr" ,tokenarr)             
+                 
+               
             }) 
-            done();
+           
         })      
     })
-    //deleting message 
+
+
+    //geting all blogs 
+ 
+      
     //deleting comment     
 })
