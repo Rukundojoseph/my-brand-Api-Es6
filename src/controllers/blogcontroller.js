@@ -129,8 +129,7 @@ static async addComment(req,res){
                        author : user.email,
                        body : text,
                        blogID : blogid
-                    };
-                    console.log(addedcomment)
+                    };                    
                     Comments.create(addedcomment, function(err, newComment){
                         if(err){
                             console.log(err);
