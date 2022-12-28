@@ -112,6 +112,8 @@ import { requireAuth } from '../middleware/authMiddleware.js'
  *       - application/json
  *     parameters:
  *       - name: id
+ *         in: path
+ *         required: true
  *       - name: commentid
  *         in: path
  *         required: true

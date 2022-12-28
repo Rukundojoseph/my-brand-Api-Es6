@@ -4,6 +4,20 @@ import  Admin from '../controllers/admincontroller.js'
 import { requireAdmin, requireAuth } from '../middleware/authMiddleware.js'
 
 
+/**
+ * @swagger
+ * /admin/blogs:
+ *   get:
+ *     tags:
+ *       - Admin
+ *     name: Blog
+ *     summary: Retrieve all blogs in admin
+ *     consumes:
+ *        - application/json
+ *     responses:
+ *       200:
+ *             description: Blogs successfully Retrieved.
+ * */
 
 /**
  * @swagger
@@ -90,13 +104,65 @@ import { requireAdmin, requireAuth } from '../middleware/authMiddleware.js'
  *       401:
  *             description: unauthorized
  * */
+/**
+ * @swagger
+ * /admin/users:
+ *   get:
+ *     tags:
+ *       - Admin
+ *     name: Blog
+ *     summary: Retrieve all blogs
+ *     consumes:
+ *        - application/json
+ *     responses:
+ *       200:
+ *             description: Blogs successfully Retrieved.
+ * */
+
+/**
+ * @swagger
+ * /admin/messages:
+ *   get:
+ *     tags:
+ *       - Admin
+ *     name:  Messages
+ *     summary: Retrieve all messages
+ *     consumes:
+ *        - application/json
+ *     responses:
+ *       200:
+ *             description: Blogs successfully Retrieved messages.
+ *       400: 
+ *              your dont have access to this route
+ * */
+
+/**
+ * @swagger
+ * /admin/messages/{id}:
+ *   delete:
+ *     tags:
+ *       - Admin
+ *     summary: Delete a messages
+ *     consumes:
+ *       - application/json
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *     responses:
+ *       200:
+ *             description: Successfully Deleted message.
+ *       400:
+ *             description: Bad request.
+ *       401:
+ *             description: unauthorized
+ * */
 
 router.get('/admin/blogs',requireAdmin,Admin.getAllBlogs)
 router.post('/admin/blogs',requireAdmin,Admin.CreateBlog)
 router.patch('/admin/blogs/:id',requireAdmin,Admin.EditBlogs)
 router.delete('/admin/blogs/:id',requireAdmin,Admin.DeleteBlog)
 router.get('/admin/blogs/:id/likes',requireAdmin,Admin.getlikes)
-router.delete('/admin/blogs/:blogid/comments/:commentId',()=>{})
 router.get('/admin/messages',requireAdmin,Admin.getContacts)
 router.get('/admin/users',requireAdmin,Admin.getUsers)
 router.delete('/admin/messages/:id',requireAdmin,Admin.Deletemessage)
