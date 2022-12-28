@@ -110,8 +110,8 @@ import { requireAdmin, requireAuth } from '../middleware/authMiddleware.js'
  *   get:
  *     tags:
  *       - Admin
- *     name: Blog
- *     summary: Retrieve all blogs
+ *     name: users
+ *     summary: Retrieve all users
  *     consumes:
  *        - application/json
  *     responses:
