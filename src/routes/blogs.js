@@ -100,7 +100,29 @@ import { requireAuth } from '../middleware/authMiddleware.js'
  *       500:
  *             description: server error.
  * */
-
+/**
+ * @swagger
+ * /blogs/{id}/{commentid}:
+ *   delete:
+ *     tags:
+ *       - Blogs
+ *     name: comment
+ *     summary: delete like
+ *     consumes:
+ *       - application/json
+ *     parameters:
+ *       - name: id
+ *       - name: commentid
+ *         in: path
+ *         required: true
+ *     responses:
+ *       200:
+ *             description: Comment successfully deleted.
+ *       400:
+ *             description: you are not the author.
+ *       500:
+ *             description: server error.
+ * */
 
 router.get('/blogs',Blogcontroller.getAllBlogs)
 router.get('/blogs/:id',Blogcontroller.getSingleBlogs)

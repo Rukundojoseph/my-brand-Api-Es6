@@ -459,5 +459,32 @@ describe("blogs api" ,()=>{
                      })
                }) 
       })
+          describe("GET/admin/blog/likes", ()=>{
+        var Ntoken="empty";       
+        const blogid = "639b45418b6be33a98643589"
+          before(
+              function(done) {               
+              chai.request(app)
+                .post('/login')
+                .send({ email: 'joseph@gmail.com', password: 'pass123' })
+                .end((error,response)=>{
+                  // Save the token from the login response                  
+               Ntoken = response.body.token;                                      
+              done()
+                });          
+                
+            });             
+            
+          it("get all blog likes from admin",(done)=>{                      
+              chai.request(app)
+              .get(`/admin/blogs/${blogid}/likes`)            
+              .set('Authorization', Ntoken)            
+              .end((err,response) =>{
+                  response.should.have.status(200)   
+                //   response.body.message.should.be.eq("success")       
+                  done()              
+                   })
+             })      
+      })
       
 })
