@@ -95,7 +95,10 @@ catch(error){
 static async DeleteBlog(req,res){
 	try {
 		await Blog.deleteOne({ _id: req.params.id })
-		res.status(204).send()
+		res.status(204).json({
+            statusCode: 204,
+            message: "deleted blog successfully "
+        }) 
 	} catch {
 		res.status(404)
 		res.send({ error: "Post doesn't exist!" })

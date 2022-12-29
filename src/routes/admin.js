@@ -50,7 +50,7 @@ import { requireAdmin, requireAuth } from '../middleware/authMiddleware.js'
 
 /**
  * @swagger
- * /admin/blog/{id}:
+ * /admin/blogs/{id}:
  *   delete:
  *     tags:
  *       - Admin
@@ -72,7 +72,7 @@ import { requireAdmin, requireAuth } from '../middleware/authMiddleware.js'
 
 /**
  * @swagger
- * /admin/blog/{id}:
+ * /admin/blogs/{id}:
  *   patch:
  *     tags:
  *       - Admin
@@ -125,15 +125,13 @@ import { requireAdmin, requireAuth } from '../middleware/authMiddleware.js'
  *   get:
  *     tags:
  *       - Admin
- *     name:  Messages
+ *     name: messages
  *     summary: Retrieve all messages
  *     consumes:
  *        - application/json
  *     responses:
  *       200:
- *             description: Blogs successfully Retrieved messages.
- *       400: 
- *              your dont have access to this route
+ *             description: messages successfully Retrieved.
  * */
 
 /**

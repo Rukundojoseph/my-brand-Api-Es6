@@ -2,8 +2,10 @@ import express from 'express'
 import mongoose from 'mongoose'
 import cookieParser from 'cookie-parser'
 import swaggerDocs from './swagger.js'
+import { config } from "dotenv";
 
-const port = 3000
+config()
+const port =  process.env.PORT || 3000
 
 
 const app = express();
@@ -24,11 +26,11 @@ import authRoutes from './routes/authRoutes.js'
 
 
 // database connection
-const dbURI = 'mongodb://127.0.0.1:27017/authopf';
-mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex:true })
+// const dbURI = 'mongodb://127.0.0.1:27017/authopf';
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex:true })
   .then((result) =>{ 
     app.listen(port,()=>{
-      console.log("listening on port 3000")
+      console.log(`listening on port ${port}`)
     })
     swaggerDocs(app,port)    
   })
@@ -38,7 +40,6 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCr
 
 
 app.get('/', (req, res) => res.send('home'));
-//  app.get('/admin', requireAdmin, (req, res) => res.send('admin'));
 app.use(blogRoutes)
 app.use(AdminRoutes)
 app.use(contactRoutes)

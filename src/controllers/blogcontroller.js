@@ -54,7 +54,7 @@ static async getSingleBlogs(req,res){
 static async addLike(req,res){         
     var likeid = "none";  
     const token = req.cookies.token || req.headers.authorization
-    jwt.verify(token, 'my name is joseph', async (err, decodedToken) => {
+    jwt.verify(token, process.env.SECRET_KEY, async (err, decodedToken) => {
         if (err) {
           return {message:"the login has been changed"}    
         } else {      
@@ -127,7 +127,7 @@ static async addComment(req,res){
     const text = req.body.text
     const token = req.cookies.token    || req.headers.authorization
    
-    jwt.verify(token, 'my name is joseph', async (err, decodedToken) => {
+    jwt.verify(token, process.env.SECRET_KEY , async (err, decodedToken) => {
         if (err) {
           return {message:"the login has been changed"}    
         } else {      
@@ -191,7 +191,7 @@ static async addMessage(req,res){
 static async deleteComment(req,res){       
     const commentId = req.params.commentid;    
     const token = req.cookies.token || req.headers.authorization
-    jwt.verify(token, 'my name is joseph', async (err, decodedToken) => {
+    jwt.verify(token, process.env.SECRET_KEY , async (err, decodedToken) => {
         if (err) {
           return {message:"the login has been changed"}    
         } else {      
@@ -204,8 +204,9 @@ static async deleteComment(req,res){
                         statusCode: 200,
                         message: "error",
                     });
-                } else{      
+                } else{       
                     const comment= await Comments.findOne({_id : commentId})
+                    if(comment){
                 if(comment.author == user.email ){
                 const deletedcmoment = await Comments.findOneAndDelete({_id : commentId})
                 foundBlog.comments.splice((foundBlog.comments.indexOf(commentId)),1)
@@ -214,13 +215,20 @@ static async deleteComment(req,res){
                     statusCode: 200,
                     message : "deleted comment"
                 })              
-                }
+                }            
                 else{
                     res.status(404).json({
-                        statusCode: 200,
+                        statusCode: 404,
                         message : "you are not the author of this comment"
                     }) 
                 }
+            }
+            else{
+                res.status(404).json({
+                    statusCode: 404,
+                    message : "comment doesn't exist "
+                }) 
+            }
             }
           
             })      
