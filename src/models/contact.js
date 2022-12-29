@@ -3,12 +3,9 @@ import mongoose from 'mongoose'
 import joi from 'joi'
 
 const contactSchema = mongoose.Schema({
-    email: {
-        type: String,
-        lowercase: true,
+    
         email: joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }).required(),
-        required: true
-    },
+   
     username:{
         type: String,
         required: true,        
