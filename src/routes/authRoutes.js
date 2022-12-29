@@ -61,8 +61,5 @@ const router = Router();
  * */
 router.post('/signup', Users.signup_post);
 router.post('/login', Users.login_post);
-router.get('/logout', Users.logout_get);
-
-
 
 export default router

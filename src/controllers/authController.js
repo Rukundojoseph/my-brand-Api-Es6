@@ -44,12 +44,6 @@ static async login_post(req, res){
   }
 
 }
-static async logout_get(req, res){
-  res.cookie('token', '', { maxAge: 1 });
-  res.status(200).json({
-    statusCode: 200,
-    message: 'logged out succefully'});
-}
 }
 
 export default Users

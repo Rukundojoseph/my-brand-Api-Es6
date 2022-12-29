@@ -65,7 +65,7 @@ describe("blogs api" ,()=>{
     })      
     //get by id 
     describe("GET /blogs/:id", ()=>{
-        const blogid = "639b45418b6be33a98643589"
+        const blogid = "63adbc1068328220e40a8065"
         it("it should get single blog by id ",(done)=>{            
             chai.request(app)
             .get('/blogs/'+ blogid) 
@@ -85,8 +85,7 @@ describe("blogs api" ,()=>{
     })
     // comment 
     describe("post /blogs/:id/comment", ()=>{
-        const blogid = "639b45418b6be33a98643589"
-        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWI3MTI2ZjJkZWE4MjkwNDAxYWE2MCIsImlhdCI6MTY3MjA0NTE1NCwiZXhwIjoxNjcyMzA0MzU0fQ.QnLy1bNzGnC6EfU4OhE10QBrakRoO3q7NgKZQ9BLSYo"
+        const blogid = "63adbc1068328220e40a8065"        
         const comment ="what is  happening now"
         it("it should check add comment on blog id ",(done)=>{            
             chai.request(app)
@@ -109,7 +108,7 @@ describe("blogs api" ,()=>{
 
     // like 
     describe("post /blogs/:id/like", ()=>{
-        const blogid = "639b45418b6be33a98643589"
+        const blogid = "63adbc1068328220e40a8065"
         const comment ="what is  happening now"
         it("it should get single blog by id ",(done)=>{            
             chai.request(app)
@@ -262,10 +261,9 @@ describe("blogs api" ,()=>{
       
     //adding comment   
     describe("post/blogs/:id/comment", ()=>{
-        var Ntoken="empty";
-        let tokenarr =[];
+        var Ntoken="empty";        
         var commentid="empty"
-        const blogid = "639b45418b6be33a98643589" 
+        const blogid = "63adbc1068328220e40a8065" 
           before(
               function(done) {               
               chai.request(app)
@@ -325,7 +323,7 @@ describe("blogs api" ,()=>{
             });             
             
           it("get add like",(done)=>{            
-            const blogid = "639b45418b6be33a98643589"                
+            const blogid = "63adbc1068328220e40a8065"                
               chai.request(app)
               .post(`/blogs/${blogid}/like`)            
               .set('Authorization', Ntoken)    
@@ -461,7 +459,7 @@ describe("blogs api" ,()=>{
       })
           describe("GET/admin/blog/likes", ()=>{
         var Ntoken="empty";       
-        const blogid = "639b45418b6be33a98643589"
+        const blogid = "63adbc1068328220e40a8065"
           before(
               function(done) {               
               chai.request(app)
