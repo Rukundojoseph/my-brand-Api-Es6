@@ -207,7 +207,7 @@ describe("blogs api" ,()=>{
             function(done) {               
             chai.request(app)
               .post('/login')
-              .send({ email: 'joseph@gmail.com', password: 'pass123' })
+              .send({ email: 'joseph@gmail.com', password: process.env.TEST_PASS })
               .end((error,response)=>{
                 // Save the token from the login response
                
@@ -238,7 +238,7 @@ describe("blogs api" ,()=>{
               function(done) {               
               chai.request(app)
                 .post('/login')
-                .send({ email: 'joseph@gmail.com', password: 'pass123' })
+                .send({ email: 'joseph@gmail.com', password: process.env.TEST_PASS })
                 .end((error,response)=>{
                   // Save the token from the login response                  
                 Ntoken = `Beare ${response.body.token}`;                                        
@@ -268,7 +268,7 @@ describe("blogs api" ,()=>{
               function(done) {               
               chai.request(app)
                 .post('/login')
-                .send({ email: 'josephrk@gmail.com', password: 'pass123' })
+                .send({ email: 'josephrk@gmail.com', password: process.env.TEST_PASS })
                 .end((error,response)=>{
                   // Save the token from the login response                  
             Ntoken = `Beare ${response.body.token}`;                                                      
@@ -313,7 +313,7 @@ describe("blogs api" ,()=>{
               function(done) {               
               chai.request(app)
                 .post('/login')
-                .send({ email: 'josephrk@gmail.com', password: 'pass123' })
+                .send({ email: 'josephrk@gmail.com', password: process.env.TEST_PASS })
                 .end((error,response)=>{
                   // Save the token from the login response                  
                 Ntoken = `Beare ${response.body.token}`;   
@@ -349,7 +349,7 @@ describe("blogs api" ,()=>{
               function(done) {               
               chai.request(app)
                 .post('/login')
-                .send({ email: 'joseph@gmail.com', password: 'pass123' })
+                .send({ email: 'joseph@gmail.com', password: process.env.TEST_PASS })
                 .end((error,response)=>{                           
                   Ntoken = `Beare ${response.body.token}`;                                     
               done()
@@ -413,7 +413,7 @@ describe("blogs api" ,()=>{
               function(done) {               
               chai.request(app)
                 .post('/login')
-                .send({ email: 'joseph@gmail.com', password: 'pass123' })
+                .send({ email: 'joseph@gmail.com', password: process.env.TEST_PASS })
                 .end((error,response)=>{
                   // Save the token from the login response                  
                   Ntoken = `Beare ${response.body.token}`;                                    
@@ -463,7 +463,7 @@ describe("blogs api" ,()=>{
               function(done) {               
               chai.request(app)
                 .post('/login')
-                .send({ email: 'joseph@gmail.com', password: 'pass123' })
+                .send({ email: 'joseph@gmail.com', password: process.env.TEST_PASS })
                 .end((error,response)=>{
                   // Save the token from the login response                  
                Ntoken = `Beare ${response.body.token}`;                                     
