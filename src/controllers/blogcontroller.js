@@ -53,7 +53,7 @@ static async getSingleBlogs(req,res){
 }
 static async addLike(req,res){         
     var likeid = "none";  
-    const token = req.cookies.token || req.headers.authorization
+    const token = (req.headers.authorization).split(' ')[1]
     jwt.verify(token, process.env.SECRET_KEY, async (err, decodedToken) => {
         if (err) {
           return {message:"the login has been changed"}    
@@ -125,7 +125,7 @@ static async addLike(req,res){
 static async addComment(req,res){
     const blogid= req.params.id     
     const text = req.body.text
-    const token = req.cookies.token    || req.headers.authorization
+    const token = (req.headers.authorization).split(' ')[1]
    
     jwt.verify(token, process.env.SECRET_KEY , async (err, decodedToken) => {
         if (err) {
@@ -190,7 +190,7 @@ static async addMessage(req,res){
 }
 static async deleteComment(req,res){       
     const commentId = req.params.commentid;    
-    const token = req.cookies.token || req.headers.authorization
+    const token = (req.headers.authorization).split(' ')[1]
     jwt.verify(token, process.env.SECRET_KEY , async (err, decodedToken) => {
         if (err) {
           return {message:"the login has been changed"}    

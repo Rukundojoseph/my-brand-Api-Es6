@@ -3,10 +3,10 @@ import  User from '../models/User.js'
 
 
 const requireAuth = (req, res, next) => {  
-  const token = req.cookies.token || req.headers.authorization
-  // check json web token exists & is verified
-  if (token) {
-    jwt.verify(token, 'my name is joseph', (err, decodedToken) => {
+  
+  if (req.headers.authorization) {
+    const token = (req.headers.authorization).split(' ')[1]
+    jwt.verify(token, process.env.SECRET_KEY, (err, decodedToken) => {
       if (err) {
         console.log(err.message);
         res.status(200).json({
@@ -27,10 +27,10 @@ const requireAuth = (req, res, next) => {
 // check current user
 
 //require admin
-const requireAdmin = (req, res, next) => {
-  const token = req.cookies.token || req.headers.authorization
-if (token) {
-  jwt.verify(token, 'my name is joseph', async (err, decodedToken) => {
+const requireAdmin = (req, res, next) => { 
+if (req.headers.authorization) {
+  const token = (req.headers.authorization).split(' ')[1]
+  jwt.verify(token, process.env.SECRET_KEY, async (err, decodedToken) => {
     if (err) {
       console.log(err.message);    
     } else {      

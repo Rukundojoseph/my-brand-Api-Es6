@@ -17,8 +17,7 @@ static async signup_post(req, res){
 
   try {
     const user = await User.create({ email, password });
-    const token = createToken(user._id);
-    res.cookie('token', token, { httpOnly: true, maxAge: maxAge * 1000 });
+    const token = createToken(user._id);    
     res.status(201).json({ user: user._id, jwt: token });
   }
   catch(err) {
@@ -33,8 +32,7 @@ static async login_post(req, res){
 
   try {
     const user = await User.login(email, password);
-    const token = createToken(user._id);    
-    res.cookie('token', token, { httpOnly: true, maxAge: maxAge * 1000 });   
+    const token = createToken(user._id);  
     res.status(200).json({ userID: user._id, token: token  });  
     
   } 
