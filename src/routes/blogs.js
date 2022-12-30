@@ -11,6 +11,7 @@ import { requireAuth } from '../middleware/authMiddleware.js'
  *       - Blogs
  *     name: Blog
  *     summary: Retrieve all blogs
+ *     security: []
  *     consumes:
  *        - application/json
  *     responses:
@@ -26,6 +27,7 @@ import { requireAuth } from '../middleware/authMiddleware.js'
  *       - Blogs
  *     name: Blog
  *     summary: retrieve single blog
+ *     security: []
  *     consumes:
  *        - application/json
  *     parameters:
@@ -107,7 +109,7 @@ import { requireAuth } from '../middleware/authMiddleware.js'
  *     tags:
  *       - Blogs
  *     name: comment
- *     summary: delete like
+ *     summary: delete like *     
  *     consumes:
  *       - application/json
  *     parameters:
@@ -116,7 +118,7 @@ import { requireAuth } from '../middleware/authMiddleware.js'
  *         required: true
  *       - name: commentid
  *         in: path
- *         required: true
+ *         required: truep
  *     responses:
  *       200:
  *             description: Comment successfully deleted.

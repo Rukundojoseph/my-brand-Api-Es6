@@ -9,6 +9,7 @@ const router = express.Router()
  *     tags:
  *       - contact
  *     summary: send a message
+ *     security: []
  *     requestBody:
  *        required: true
  *        content:

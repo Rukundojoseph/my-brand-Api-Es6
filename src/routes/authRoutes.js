@@ -10,6 +10,7 @@ const router = Router();
  *       - Users
  *     name: login
  *     summary: login a user
+ *     security: []
  *     consumes:
  *       - application/json
  *     requestBody:
@@ -39,6 +40,7 @@ const router = Router();
  *       - Users
  *     name: login
  *     summary: signup user
+ *     security: []
  *     consumes:
  *       - application/json
  *     requestBody:
