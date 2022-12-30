@@ -7,8 +7,23 @@ import { config } from "dotenv";
 config()
 const port =  process.env.PORT || 3000
 
+import helmet from 'helmet' ;
+import cors from 'cors';
+import xss from 'xss-clean';
+import rateLimiter from 'express-rate-limit';
 
 const app = express();
+app.use(
+  rateLimiter({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // limit each IP to 100 requests per windowMs
+  })
+);
+
+app.use(helmet());  
+app.use(cors());
+app.use(xss());
+
 
 // middleware
 app.use(express.static('public'));
