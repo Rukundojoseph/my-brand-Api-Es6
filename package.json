@@ -30,7 +30,7 @@
     "test": "mocha  --timeout 10000000 ./src/Test/Test.js --require @babel/register --exit",
     "build": "babel src -d dist",
     "start": "npm run build && node dist/app.js",
-    "dev_start": "nodemon --exec babel-node src/app.js",
+    "dev_start": "node --exec babel-node src/app.js",
     "coverage": "nyc npm run test ",
     "cover": "istanbul cover node_modules/mocha/bin/_mocha"
   },
