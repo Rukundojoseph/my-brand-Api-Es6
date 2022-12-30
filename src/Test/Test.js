@@ -211,7 +211,7 @@ describe("blogs api" ,()=>{
               .end((error,response)=>{
                 // Save the token from the login response
                
-             Ntoken = response.body.token;                                      
+             Ntoken = `Beare ${response.body.token}`;                                      
             done()
               });          
               
@@ -241,7 +241,7 @@ describe("blogs api" ,()=>{
                 .send({ email: 'joseph@gmail.com', password: 'pass123' })
                 .end((error,response)=>{
                   // Save the token from the login response                  
-               Ntoken = response.body.token;                                      
+                Ntoken = `Beare ${response.body.token}`;                                        
               done()
                 });          
                 
@@ -271,7 +271,7 @@ describe("blogs api" ,()=>{
                 .send({ email: 'josephrk@gmail.com', password: 'pass123' })
                 .end((error,response)=>{
                   // Save the token from the login response                  
-               Ntoken = response.body.token;                                                     
+            Ntoken = `Beare ${response.body.token}`;                                                      
               done()
                 });          
                 
@@ -316,7 +316,7 @@ describe("blogs api" ,()=>{
                 .send({ email: 'josephrk@gmail.com', password: 'pass123' })
                 .end((error,response)=>{
                   // Save the token from the login response                  
-               Ntoken = response.body.token;                                      
+                Ntoken = `Beare ${response.body.token}`;   
               done()
                 });          
                 
@@ -350,9 +350,8 @@ describe("blogs api" ,()=>{
               chai.request(app)
                 .post('/login')
                 .send({ email: 'joseph@gmail.com', password: 'pass123' })
-                .end((error,response)=>{
-                  // Save the token from the login response                  
-               Ntoken = response.body.token;                                      
+                .end((error,response)=>{                           
+                  Ntoken = `Beare ${response.body.token}`;                                     
               done()
                 });          
                 
@@ -417,7 +416,7 @@ describe("blogs api" ,()=>{
                 .send({ email: 'joseph@gmail.com', password: 'pass123' })
                 .end((error,response)=>{
                   // Save the token from the login response                  
-               Ntoken = response.body.token;                                      
+                  Ntoken = `Beare ${response.body.token}`;                                    
               done()
                 });          
                 
@@ -467,7 +466,7 @@ describe("blogs api" ,()=>{
                 .send({ email: 'joseph@gmail.com', password: 'pass123' })
                 .end((error,response)=>{
                   // Save the token from the login response                  
-               Ntoken = response.body.token;                                      
+               Ntoken = `Beare ${response.body.token}`;                                     
               done()
                 });          
                 
