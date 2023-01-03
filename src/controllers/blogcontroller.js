@@ -30,7 +30,7 @@ static async getAllBlogs(req,res){
 static async getSingleBlogs(req,res){
     const blogID= req.params.id
     const blog = await Blog.findOne({ _id: blogID}).populate("comments")
-    .populate(likes)
+    .populate("likes")
  if(blog){
  const coms = await Comments.findById(blog.comments)
 
