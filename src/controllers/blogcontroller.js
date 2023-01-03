@@ -42,7 +42,8 @@ static async getSingleBlogs(req,res){
         date: blog.date,
         title : blog.title,
        text : blog.body ,
-       likes : blog.likes
+       likes : blog.likes,
+       image : blog.image
        ,comments: blog.comments}
     },    
     )
