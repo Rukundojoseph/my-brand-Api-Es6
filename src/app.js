@@ -5,6 +5,7 @@ import swaggerDocs from './swagger.js'
 import { config } from "dotenv";
 
 config()
+
 const port =  process.env.PORT || 3000
 
 import helmet from 'helmet' ;

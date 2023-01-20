@@ -77,7 +77,7 @@ static async addLike(req,res){
                             likeid= element._id                            
                         }                        
                     });
-                    if(likeid== "none"){
+                    if(likeid == "none"){
                     var addedlike = {                        
                        email : user.email
                     }; 
@@ -141,7 +141,7 @@ static async addComment(req,res){
                     res.status(400).json({
                         err,
                         statusCode: 200,
-                        message: "error",
+                        message: "no blog found",
                     });
                 } else{                  
                     
@@ -179,7 +179,7 @@ static async addMessage(req,res){
         username : req.body.name,
         message : req.body.message
     }
-    const messages =  await CONTACT.create(ms)
+    const messages =  await CONTACT.create(ms)   
     res.status(200).json({
         statusCode: 200,
         message : "Message Sent",
@@ -188,7 +188,10 @@ static async addMessage(req,res){
     } 
     catch(err){
         const errors = handleErrors(err)
-        res.status(400).json({errors})
+        res.status(400).json({
+            statusCode: 400,
+            message: "you should add a email,username and message"
+        })
     }   
 }
 static async deleteComment(req,res){       

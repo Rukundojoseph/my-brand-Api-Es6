@@ -79,10 +79,7 @@ import { requireAdmin, requireAuth } from '../middleware/authMiddleware.js'
  *     summary: Update a blog
  *     content:
  *       - application/json
- *     parameters:
- *       - title: auth
- *         in: header
- *         required: true
+ *     parameters: 
  *       - name: id
  *         in: path
  *         required: true
@@ -90,8 +87,6 @@ import { requireAdmin, requireAuth } from '../middleware/authMiddleware.js'
  *         in: body
  *         schema:
  *             properties:
- *                Author:
- *                 type: string
  *                Title:
  *                 type: string
  *                Content:
@@ -118,6 +113,9 @@ import { requireAdmin, requireAuth } from '../middleware/authMiddleware.js'
  *       200:
  *             description: Blogs successfully Retrieved.
  * */
+
+
+
 
 /**
  * @swagger
@@ -167,4 +165,3 @@ router.delete('/admin/messages/:id',requireAdmin,Admin.Deletemessage)
 
 
 export default router
-

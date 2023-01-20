@@ -95,7 +95,8 @@ catch(error){
 static async DeleteBlog(req,res){
 	try {
 		await Blog.deleteOne({ _id: req.params.id })
-		res.status(204).json({
+		
+        res.status(204).json({
             statusCode: 204,
             message: "deleted blog successfully "
         }) 
